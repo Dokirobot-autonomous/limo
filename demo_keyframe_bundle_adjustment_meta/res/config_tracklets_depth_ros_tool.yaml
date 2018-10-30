@@ -5,7 +5,7 @@
 subscriber_msg_name_cloud: /sensor/velodyne/cloud_euclidean
 subscriber_msg_name_tracklets: /matches/grayscale/left
 subscriber_msg_name_camera_info: /sensor/camera/grayscale/left/camera_info
-# subscriber_msg_name_semantics: /sensor/camera/color_labels/left/image_rect
+# subscriber_msg_name_semantics: /sensor/camera/color_labels/left/image_raw
 
 # _____ Publisher _____
 

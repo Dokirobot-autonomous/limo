@@ -31,7 +31,7 @@
 
   <!-- This connects trres estimate_prior and estimate in case you wanted to calculate a transform between the two of them. -->
   <node pkg="tf2_ros" type="static_transform_publisher" name="transform_local_estimate_prior" args="0. 0. 0. 0. 0. 0. estimate/local_cs estimate_prior/local_cs" required="true"/>
-  <node pkg="tf2_ros" type="static_transform_publisher" name="transform_local_cs" args="0. 0. 0. 0. 0. 0. estimate/local_cs local_cs" required="true"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="transform_local_cs" args="0. 0. 0. 1.57 1.57 1.57 estimate/local_cs local_cs" required="true"/>
   
   <!-- Remapping of topics for gt -->
   <node pkg="tf2_ros" type="static_transform_publisher" name="transform_vehicle_camera_vehicle_gt" args=" 0 1.35 -1.08 1.5707963 -1.5707963 0 sensor/camera gt/vehicle" required="true"/>
