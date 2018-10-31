@@ -4,6 +4,11 @@ catkin config --profile limo_release -x _limo_release --cmake-args -DCMAKE_BUILD
 
 # clone stuff
 cd ..
+git clone https://github.com/KIT-MRT/feature_tracking.git
+git clone https://github.com/johannes-graeter/mono_lidar_depth.git
+git clone https://github.com/KIT-MRT/viso2.git
+git clone https://github.com/KIT-MRT/mrt_cmake_modules.git
+git clone https://github.com/KIT-MRT/rosinterface_handler.git
 #git submodule add https://github.com/KIT-MRT/feature_tracking.git
 #git submodule add https://github.com/johannes-graeter/mono_lidar_depth.git
 #git submodule add https://github.com/KIT-MRT/viso2.git

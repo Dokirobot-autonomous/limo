@@ -358,42 +358,5 @@ void publishPaths(ros::Publisher& path_publisher,
     path_publisher.publish(path_msg);
     active_path_publisher.publish(active_path_msg);
 }
-
-void publishPose(ros::Publisher& pose_publisher,
-                  ros::Publisher& active_path_publisher,
-                  keyframe_bundle_adjustment::BundleAdjusterKeyframes::Ptr bundle_adjuster,
-                  std::string tf_parent_frame_id) {
-    nav_msgs::Pose pose_msg;
-
-    // timestamp of msg is same as last keyframe
-    ros::Time cur_ts;
-    cur_ts.fromNSec(bundle_adjuster->getKeyframe().timestamp_);
-    path_msg.header.stamp = cur_ts;
-    // frame id of msg is same as tf_parent without tf2 convention
-    path_msg.header.frame_id = "/" + tf_parent_frame_id;
-
-    nav_msgs::Path active_path_msg = path_msg;
-
-    for (const auto& kf : bundle_adjuster->keyframes_) {
-        geometry_msgs::PoseStamped cur_pose;
-        ros::Time p_ts;
-        p_ts.fromNSec(kf.second->timestamp_);
-        cur_pose.header.stamp = p_ts;
-        cur_pose.header.frame_id = path_msg.header.frame_id;
-        //            ROS_DEBUG_STREAM("origin in cur_pose=\n"
-        //                             << kf.second.getEigenPose().translation().transpose());
-
-        toGeometryMsg(cur_pose.pose, kf.second->getEigenPose().inverse());
-
-        path_msg.poses.push_back(cur_pose);
-
-        if (kf.second->is_active_) {
-            active_path_msg.poses.push_back(cur_pose);
-        }
-    }
-
-    path_publisher.publish(path_msg);
-    active_path_publisher.publish(active_path_msg);
-}
 }
 }
